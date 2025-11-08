@@ -1,166 +1,189 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>P.Rukesh - Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-color: #fdfcf5;
-            --text-color: #111;
-            --card-bg: #ffffff;
-            --accent-color: #4CAF50;
-            --gradient-card: linear-gradient(145deg, #ffffff, #f0f0f0);
-            --gradient-accent: linear-gradient(45deg, #4CAF50, #66bb6a);
-        }
-        [data-theme="dark"] {
-            --bg-color: #121212;
-            --text-color: #f5f5f5;
-            --card-bg: #1e1e1e;
-            --accent-color: #90caf9;
-            --gradient-card: linear-gradient(145deg, #1e1e1e, #2c2c2c);
-            --gradient-accent: linear-gradient(45deg, #90caf9, #42a5f5);
-        }
-        * { margin:0; padding:0; box-sizing:border-box; font-family: 'Roboto', sans-serif; }
-        html { scroll-behavior: smooth; }
-        body { background-color: var(--bg-color); color: var(--text-color); line-height:1.6; transition: background 0.5s, color 0.5s;}
-        header { display:flex; justify-content:space-between; align-items:center; padding:2rem; flex-wrap:wrap; }
-        .hero { display:flex; flex-wrap:wrap; align-items:center; gap:2rem; padding:2rem; }
-        .hero img { width:180px; height:180px; border-radius:50%; object-fit:cover; border:4px solid var(--accent-color); box-shadow:0 8px 20px rgba(0,0,0,0.15); cursor:pointer; transition: transform 0.3s; }
-        .hero img:hover { transform: scale(1.05); }
-        .hero-info h1 { font-size:2.5rem; margin-bottom:0.5rem; background: var(--gradient-accent); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .hero-info p { font-size:1.1rem; margin-bottom:0.5rem; }
-        a { color: var(--accent-color); text-decoration: none; }
-        a:hover { text-decoration: underline; }
-        section { padding:2rem; }
-        h2 { font-size:2rem; margin-bottom:1rem; display:inline-block; padding-bottom:0.3rem; background: var(--gradient-accent); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .skills, .projects { display:flex; flex-wrap:wrap; gap:1rem; }
-        .skill-card, .project-card {
-            background: var(--gradient-card);
-            padding:1.2rem;
-            border-radius:16px;
-            box-shadow:8px 8px 20px rgba(0,0,0,0.1), -8px -8px 20px rgba(255,255,255,0.7);
-            flex:1 1 calc(33% - 1rem);
-            min-width:250px;
-            transition: transform 0.3s, box-shadow 0.3s;
-            cursor: pointer;
-        }
-        .skill-card:hover, .project-card:hover { transform:translateY(-8px); box-shadow:12px 12px 25px rgba(0,0,0,0.2), -12px -12px 25px rgba(255,255,255,0.4); }
-        .toggle-theme { cursor:pointer; padding:0.5rem 1rem; border:2px solid var(--accent-color); border-radius:12px; background:none; color:var(--accent-color); font-weight:bold; transition:all 0.3s; }
-        .toggle-theme:hover { background: var(--gradient-accent); color: var(--card-bg); }
-        .download-btn { display:inline-block; margin-top:1rem; padding:0.6rem 1.2rem; border-radius:12px; background: var(--gradient-accent); color:#fff; font-weight:bold; text-decoration:none; box-shadow:4px 4px 10px rgba(0,0,0,0.2); transition: transform 0.3s, box-shadow 0.3s; }
-        .download-btn:hover { transform:translateY(-3px); box-shadow:6px 6px 15px rgba(0,0,0,0.3); }
-        footer { text-align:center; padding:2rem; font-size:0.9rem; }
+   <style>
+    :root {
+        --bg-color: #fdfcf5;
+        --text-color: #111;
+        --card-bg: #ffffff;
+        --accent-color: #4CAF50;
+        --gradient-card: linear-gradient(145deg, #ffffff, #f0f0f0);
+        --gradient-accent: linear-gradient(45deg, #4CAF50, #66bb6a);
+    }
+    [data-theme="dark"] {
+        --bg-color: #121212;
+        --text-color: #f5f5f5;
+        --card-bg: #1e1e1e;
+        --accent-color: #90caf9;
+        --gradient-card: linear-gradient(145deg, #1e1e1e, #2c2c2c);
+        --gradient-accent: linear-gradient(45deg, #90caf9, #42a5f5);
+    }
 
-        /* Modal Styles */
-        .modal {
-            display:none;
-            position:fixed;
-            z-index:999;
-            left:0; top:0;
-            width:100%; height:100%;
-            overflow:auto;
-            background-color:rgba(0,0,0,0.7);
-            opacity:0;
-            transition: opacity 0.3s ease;
-        }
-        .modal.show { display:block; opacity:1; }
-        .modal-content {
-            margin:10% auto;
-            padding:1.5rem;
-            border-radius:16px;
-            width:80%; max-width:480px;
-            transform:scale(0.7);
-            transition: transform 0.3s ease;
-            background: var(--card-bg); /* Ensures visibility */
-            color: var(--text-color); /* Ensures text is readable */
-        }
-        .modal.show .modal-content { transform:scale(1); }
-        .modal-content h3 { margin-bottom:1rem; }
-        .modal-content p { margin-bottom:0.8rem; line-height:1.5; }
-        .close {
-            position:absolute; top:1rem; right:1rem; font-size:2rem; font-weight:bold;
-            color:white; cursor:pointer; z-index:1000;
-        }
-        .close:hover { color: var(--accent-color); }
+    * { margin:0; padding:0; box-sizing:border-box; font-family: 'Roboto', sans-serif; }
+    html { scroll-behavior: smooth; }
+    body { background-color: var(--bg-color); color: var(--text-color); line-height:1.6; transition: background 0.5s, color 0.5s;}
+    header { display:flex; justify-content:space-between; align-items:center; padding:2rem; flex-wrap:wrap; }
+    /* slightly lower hero for clearer photo */
+    .hero { display:flex; flex-wrap:wrap; align-items:center; gap:2rem; padding:2rem; margin-top: 12px; }
 
-        /* Floating Navigation Keys */
+    /* profile image small margin down for clarity */
+    .hero img { width:180px; height:180px; border-radius:50%; object-fit:cover; border:4px solid var(--accent-color); box-shadow:0 8px 20px rgba(0,0,0,0.15); cursor:pointer; transition: transform 0.3s; margin-top: 16px; }
+    .hero img:hover { transform: scale(1.05); }
+
+    .hero-info h1 { font-size:2.5rem; margin-bottom:0.5rem; background: var(--gradient-accent); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero-info p { font-size:1.1rem; margin-bottom:0.5rem; }
+    a { color: var(--accent-color); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    section { padding:2rem; }
+    h2 { font-size:2rem; margin-bottom:1rem; display:inline-block; padding-bottom:0.3rem; background: var(--gradient-accent); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .skills, .projects { display:flex; flex-wrap:wrap; gap:1rem; }
+    .skill-card, .project-card {
+        background: var(--gradient-card);
+        padding:1.2rem;
+        border-radius:16px;
+        box-shadow:8px 8px 20px rgba(0,0,0,0.1), -8px -8px 20px rgba(255,255,255,0.7);
+        flex:1 1 calc(33% - 1rem);
+        min-width:250px;
+        transition: transform 0.28s cubic-bezier(.2,.9,.3,1), box-shadow 0.28s cubic-bezier(.2,.9,.3,1);
+        cursor: pointer;
+    }
+    .skill-card:hover, .project-card:hover { transform:translateY(-8px); box-shadow:12px 12px 25px rgba(0,0,0,0.2), -12px -12px 25px rgba(255,255,255,0.4); }
+    .toggle-theme { cursor:pointer; padding:0.5rem 1rem; border:2px solid var(--accent-color); border-radius:12px; background:none; color:var(--accent-color); font-weight:bold; transition:all 0.3s; }
+    .toggle-theme:hover { background: var(--gradient-accent); color: var(--card-bg); }
+    .download-btn { display:inline-block; margin-top:1rem; padding:0.6rem 1.2rem; border-radius:12px; background: var(--gradient-accent); color:#fff; font-weight:bold; text-decoration:none; box-shadow:4px 4px 10px rgba(0,0,0,0.2); transition: transform 0.3s, box-shadow 0.3s; }
+    .download-btn:hover { transform:translateY(-3px); box-shadow:6px 6px 15px rgba(0,0,0,0.3); }
+    footer { text-align:center; padding:2rem; font-size:0.9rem; }
+
+    /* Modal Styles with animation */
+    .modal {
+        display:none;
+        position:fixed;
+        z-index:999;
+        left:0; top:0;
+        width:100%; height:100%;
+        overflow:auto;
+        background-color:rgba(0,0,0,0.7);
+        align-items: center; /* used when showing as flex */
+        justify-content: center;
+        padding: 40px 20px;
+        opacity: 0;
+        transition: opacity 0.25s ease;
+    }
+    .modal.show { display:flex; opacity:1; }
+
+    /* Modal card */
+    .modal-content {
+        margin:0 auto;
+        padding:1.5rem;
+        border-radius:16px;
+        width:90%; max-width:640px;
+        transform: translateY(-14px) scale(0.97);
+        transition: transform 0.28s cubic-bezier(.2,.9,.3,1), box-shadow 0.28s;
+        background: var(--card-bg);
+        color: var(--text-color);
+        box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+        position: relative;
+        text-align: left;
+    }
+    .modal.show .modal-content { transform: translateY(0) scale(1); }
+
+    /* image inside modal (photo modal) */
+    .modal-content img {
+        max-width: 300px;   /* smaller ideal size */
+        width: 100%;        /* responsive inside modal */
+        height: auto;
+        border-radius:12px;
+        display:block;
+        margin: 0 auto;
+    }
+
+    /* nice circular visible close button */
+    .modal .close {
+        position:absolute; top:12px; right:12px; width:38px; height:38px; border-radius:50%;
+        display:flex; align-items:center; justify-content:center; background: var(--accent-color); color: var(--card-bg);
+        font-weight:700; cursor:pointer; z-index:1001; box-shadow:0 6px 16px rgba(0,0,0,0.2);
+    }
+    .modal .close:hover { transform: scale(1.03); }
+
+    /* Floating Navigation Keys */
+    .nav-keys-top {
+        position: fixed;
+        top: 1rem;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        z-index: 9999;
+    }
+    .nav-keys-top .top-key {
+        display: block;
+        padding: 0.35rem 0.6rem;
+        border-radius: 10px;
+        background: var(--gradient-accent);
+        color: #fff;
+        font-weight: bold;
+        font-family: 'Courier New', monospace;
+        font-size: 0.75rem;
+        white-space: nowrap;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .nav-keys-top .top-key:hover {
+        transform: translateY(-2px);
+        box-shadow: 4px 4px 10px rgba(0,0,0,0.3);
+    }
+    .nav-keys-bottom {
+        position: fixed;
+        bottom: 1rem;
+        right: 1rem;
+        z-index: 9999;
+    }
+    .nav-keys-bottom .bottom-key {
+        display: block;
+        padding: 0.4rem 0.7rem;
+        border-radius: 10px;
+        background: var(--gradient-accent);
+        color: #fff;
+        font-weight: bold;
+        font-family: 'Verdana', sans-serif;
+        font-size: 0.75rem;
+        box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .nav-keys-bottom .bottom-key:hover {
+        transform: translateY(-2px);
+        box-shadow: 4px 4px 10px rgba(0,0,0,0.3);
+    }
+
+    /* Responsive adjustments */
+    @media(max-width:768px){
+        .hero { flex-direction:column; text-align:center; }
+        .skill-card, .project-card { flex:1 1 100%; }
         .nav-keys-top {
-            position: fixed;
+            flex-direction: column;
             top: 1rem;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.4rem;
-            z-index: 9999;
         }
-        .nav-keys-top .top-key {
-            display: block;
-            padding: 0.35rem 0.6rem;
-            border-radius: 10px;
-            background: var(--gradient-accent);
-            color: #fff;
-            font-weight: bold;
-            font-family: 'Courier New', monospace;
-            font-size: 0.75rem;
-            white-space: nowrap;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        .nav-keys-top .top-key:hover {
-            transform: translateY(-2px);
-            box-shadow: 4px 4px 10px rgba(0,0,0,0.3);
-        }
-
-        .nav-keys-bottom {
-            position: fixed;
-            bottom: 1rem;
-            right: 1rem;
-            z-index: 9999;
-        }
-        .nav-keys-bottom .bottom-key {
-            display: block;
-            padding: 0.4rem 0.7rem;
-            border-radius: 10px;
-            background: var(--gradient-accent);
-            color: #fff;
-            font-weight: bold;
-            font-family: 'Verdana', sans-serif;
-            font-size: 0.75rem;
-            box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        .nav-keys-bottom .bottom-key:hover {
-            transform: translateY(-2px);
-            box-shadow: 4px 4px 10px rgba(0,0,0,0.3);
-        }
-
-        /* Responsive adjustments */
-        @media(max-width:768px){
-            .hero { flex-direction:column; text-align:center; }
-            .skill-card, .project-card { flex:1 1 100%; }
-
-            .nav-keys-top {
-                flex-direction: column;
-                top: 1rem;
-            }
-            .nav-keys-top .top-key { font-size: 0.7rem; padding: 0.3rem 0.5rem; }
-
-            .nav-keys-bottom .bottom-key { font-size: 0.7rem; padding: 0.3rem 0.5rem; }
-        }
-    </style>
+        .nav-keys-top .top-key { font-size: 0.7rem; padding: 0.3rem 0.5rem; }
+        .nav-keys-bottom .bottom-key { font-size: 0.7rem; padding: 0.3rem 0.5rem; }
+        .modal-content { width: 100%; max-width: 520px; padding: 1rem; }
+    }
+</style>
 </head>
 <body data-theme="light">
     <header>
         <div>
             <h1>P. Rukesh</h1>
-            <p>B.Tech. – CSE (Artificial Intelligence)</p>
+            <p>B.Tech. – CSE (Artificial Intelligence & Data Science)</p>
         </div>
         <button class="toggle-theme" onclick="toggleTheme()">Day/Night</button>
     </header>
 
     <section id="hero" class="hero">
+        <!-- keep same image name as your project (ensure file exists) -->
         <img src="rukesh_photo.jpg" alt="Your Photo" id="profilePhoto" onclick="openPhotoModal()">
         <div class="hero-info">
             <p>📞 +91-9618924662 | ✉ rukesh2507@gmail.com</p>
@@ -168,7 +191,7 @@
                 🔗 <a href="https://www.linkedin.com/in/rukesh-pallinti-717892266/" target="_blank">LinkedIn</a> |
                 <a href="https://github.com/RukeshPallinti" target="_blank">GitHub</a>
             </p>
-            <p>Final-year AI student passionate about solving real-world problems using AI. Strong collaborator eager to contribute meaningfully in a placement opportunity.</p>
+            <p>"Final-year AI and Data Science student passionate about turning data into insights through dashboards and visualizations to create real-world impact."</p>
             <a href="Rukesh_resume.pdf" download class="download-btn">📄 Download Resume</a>
         </div>
     </section>
@@ -188,23 +211,31 @@
     <section id="technical-skills">
         <h2>Technical Skills</h2>
         <div class="skills">
-            <div class="skill-card">Python, Java, C
-            </div>
+            <div class="skill-card">Python, Java, C</div>
             <div class="skill-card">MySQL, MongoDB</div>
             <div class="skill-card">Scikit-learn, Pandas, NumPy</div>
             <div class="skill-card">Matplotlib, Seaborn, Streamlit, Power BI</div>
             <div class="skill-card">Data Structures & Algorithms, Git/GitHub</div>
+            <div class="skill-card">Spacy  & Hugging-Face Transformers</div>
         </div>
     </section>
 
     <section id="projects">
         <h2>Projects</h2>
         <div class="projects">
-            <div class="project-card" onclick="openModal('crypto')">
+            <div class="project-card" onclick="openModal('capture')" role="button" aria-pressed="false" tabindex="0">
+                <h3>Image Hashtag Generator</h3>
+                <p>Built & deployed a Capture-Tag recommendation  model with TensorFlow and Flask.</p>
+            </div>
+            <div class="project-card" onclick="openModal('churn')" role="button" aria-pressed="false" tabindex="0">
+                <h3>Customer Churn Prediction</h3>
+                <p>Built & deployed a churn prediction model with Flask and MongoDB Atlas.</p>
+            </div>
+             <div class="project-card" onclick="openModal('crypto')" role="button" aria-pressed="false" tabindex="0">
                 <h3>Cryptocurrency Dashboard</h3>
                 <p>Developed a real-time dashboard to track and analyze top cryptocurrencies.</p>
             </div>
-            <div class="project-card" onclick="openModal('laptop')">
+            <div class="project-card" onclick="openModal('laptop')" role="button" aria-pressed="false" tabindex="0">
                 <h3>Laptop Analysis & Visualization</h3>
                 <p>Performed data analysis on Kaggle laptop dataset and built an interactive dashboard.</p>
             </div>
@@ -231,6 +262,15 @@
         <p>Alternate Emails: rukesh2507@gmail.com | rukeshnaidu8@gmail.com</p>
     </section>
 
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <p>📞 +91-9618924662 | ✉ <a href="mailto:rukesh2507@gmail.com">rukesh2507@gmail.com</a></p>
+        <p>
+            🔗 <a href="https://www.linkedin.com/in/rukesh-pallinti-717892266/" target="_blank">LinkedIn</a> |
+            <a href="https://github.com/RukeshPallinti" target="_blank">GitHub</a>
+        </p>
+    </section>
+
     <!-- Floating Navigation Keys -->
     <div class="nav-keys-top">
         <a href="#expertise" class="top-key">Expertise</a>
@@ -239,6 +279,7 @@
         <a href="#education" class="top-key">Education</a>
         <a href="#co-curricular" class="top-key">Co-Curricular</a>
         <a href="#personal-details" class="top-key">Personal</a>
+        <a href="#contact" class="top-key">Contact</a>
     </div>
 
     <div class="nav-keys-bottom">
@@ -250,59 +291,146 @@
     </footer>
 
     <!-- Profile Photo Modal -->
-    <div id="photoModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closePhotoModal()">&times;</span>
-            <img src="rukesh_photo.jpg" alt="Your Photo">
+    <div id="photoModal" class="modal" aria-hidden="true">
+        <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="photoModalTitle">
+            <button class="close" aria-label="Close photo modal" title="Close" onclick="closePhotoModal()">✕</button>
+            <h3 id="photoModalTitle" style="margin-bottom:1rem;">Profile Photo</h3>
+            <img src="rukesh_photo.jpg" alt="Rukesh Profile Photo">
         </div>
     </div>
 
     <!-- Project Modals -->
+    <div id="crypto" class="modal" aria-hidden="true">
+      <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="cryptoTitle">
+        <button class="close" aria-label="Close" title="Close" onclick="closeModal('crypto')">✕</button>
+        <h3 id="cryptoTitle">Cryptocurrency Dashboard</h3>
+        <p><strong>Description:</strong> Developed a real-time dashboard to track and analyze top cryptocurrencies using Python, Pandas, Streamlit, and Plotly.</p>
+        <p><strong>Outcome:</strong> Interactive dashboard for exploring cryptocurrency trends.</p>
+        <p>
+            🔗 <a href="https://crypto-dashboard-5uc3ev7c2bxvkucftzt5f4.streamlit.app/" target="_blank" rel="noopener">Live Demo</a> |
+            <a href="https://github.com/RukeshPallinti/crypto-dashboard" target="_blank" rel="noopener">GitHub Repo</a>
+        </p>
+      </div>
+    </div>
 
-<!-- Project Modals with links -->
-<div id="crypto" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal('crypto')">&times;</span>
-    <h3>Cryptocurrency Dashboard</h3>
-    <p><strong>Description:</strong> Developed a real-time dashboard to track and analyze top cryptocurrencies using Python, Pandas, Streamlit, and Plotly.</p>
-    <p><strong>Outcome:</strong> Interactive dashboard for exploring cryptocurrency trends.</p>
-    <p>
-        🔗 <a href="https://crypto-dashboard-5uc3ev7c2bxvkucftzt5f4.streamlit.app/" target="_blank">Live Demo</a> |
-        <a href="https://github.com/RukeshPallinti/crypto-dashboard" target="_blank">GitHub Repo</a>
-    </p>
-  </div>
-</div>
+    <div id="laptop" class="modal" aria-hidden="true">
+      <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="laptopTitle">
+        <button class="close" aria-label="Close" title="Close" onclick="closeModal('laptop')">✕</button>
+        <h3 id="laptopTitle">Laptop Analysis & Visualization</h3>
+        <p><strong>Description:</strong> Data analysis on Kaggle laptop dataset, interactive dashboard built using Python, Pandas, Seaborn, Power BI.</p>
+        <p><strong>Outcome:</strong> Dashboard highlighting laptop specs, pricing, and brand trends.</p>
+        <p>
+           <a href="https://github.com/RukeshPallinti/Laptop-Analysis" target="_blank" rel="noopener">GitHub Repo</a>
+       </p>
+      </div>
+    </div>
 
-<div id="laptop" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal('laptop')">&times;</span>
-    <h3>Laptop Analysis & Visualization</h3>
-    <p><strong>Description:</strong> Data analysis on Kaggle laptop dataset, interactive dashboard built using Python, Pandas, Seaborn, Power BI.</p>
-    <p><strong>Outcome:</strong> Dashboard highlighting laptop specs, pricing, and brand trends.</p>
-    <p>
-       <a href="https://github.com/RukeshPallinti/Laptop-Analysis" target="_blank">GitHub Repo</a>
-   </p>
-  </div>
-</div>
+    <div id="churn" class="modal" aria-hidden="true">
+      <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="churnTitle">
+        <button class="close" aria-label="Close" title="Close" onclick="closeModal('churn')">✕</button>
+        <h3 id="churnTitle">Customer Churn Prediction</h3>
+        <p><strong>Description:</strong> Built a classification model using Scikit-learn to predict customer churn. Deployed with Flask & MongoDB Atlas.</p>
+        <p><strong>Outcome:</strong> Deployed ML model with interactive UI for predictions.</p>
+        <p>🔗 <a href="https://churn-prediction-project-4.onrender.com/" target="_blank" rel="noopener">Live Demo</a> |
+           <a href="https://github.com/RukeshPallinti/Churn-Prediction-Project" target="_blank" rel="noopener">GitHub Repo</a></p>
+      </div>
+    </div>
+
+      <div id="capture" class="modal" aria-hidden="true">
+      <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="Capture-Tag">
+        <button class="close" aria-label="Close" title="Close" onclick="closeModal('capture')">✕</button>
+        <h3 id="capture tag">Image Hashtag Generator</h3>
+        <p><strong>Description:</strong> Generates relevant hashtags from uploaded images using TensorFlow + Flask.</p>
+        <p><strong>Outcome:</strong> Deployed Tensor model with Twitter like  UI for recommendations.</p>
+        <p>🔗 <a href="https://web-production-d8d11.up.railway.app/" target="_blank" rel="noopener">Live Demo</a> |
+           <a href="https://github.com/RukeshPallinti/Capture-Tag" target="_blank" rel="noopener">GitHub Repo</a></p>
+          <p>Note: Free-tier server may take a few seconds to process images.</p>
+          <!-- Screenshot Gallery -->
+    <div class="screenshot-gallery">
+      <img src="app.png"><h3>The screenshot of the model!</h3>
+    </div>
+      </div>
+    </div>
 
     <script>
+        /* Theme toggle */
         function toggleTheme() {
             const body = document.body;
             body.dataset.theme = body.dataset.theme === 'light' ? 'dark' : 'light';
         }
 
-        function openPhotoModal() { document.getElementById('photoModal').classList.add('show'); }
-        function closePhotoModal() { document.getElementById('photoModal').classList.remove('show'); }
-
-        function openModal(id) { document.getElementById(id).classList.add('show'); }
-        function closeModal(id) { document.getElementById(id).classList.remove('show'); }
-
-        window.onclick = function(event) {
-            const modals = document.querySelectorAll('.modal');
-            modals.forEach(modal => {
-                if(event.target == modal) modal.classList.remove('show');
-            });
+        /* Photo modal */
+        function openPhotoModal() {
+            const m = document.getElementById('photoModal');
+            m.classList.add('show');
+            m.setAttribute('aria-hidden', 'false');
+            // trap focus to the modal (simple)
+            document.activeElement && document.activeElement.blur();
         }
+        function closePhotoModal() {
+            const m = document.getElementById('photoModal');
+            m.classList.remove('show');
+            m.setAttribute('aria-hidden', 'true');
+        }
+
+        /* Generic project modals */
+        function openModal(id) {
+            const m = document.getElementById(id);
+            if (!m) return;
+            m.classList.add('show');
+            m.setAttribute('aria-hidden', 'false');
+        }
+        function closeModal(id) {
+            const m = document.getElementById(id);
+            if (!m) return;
+            m.classList.remove('show');
+            m.setAttribute('aria-hidden', 'true');
+        }
+
+        /* Close on outside click */
+        window.addEventListener('click', function(event) {
+            // if click on modal overlay, close it
+            if (event.target && event.target.classList && event.target.classList.contains('modal')) {
+                event.target.classList.remove('show');
+                event.target.setAttribute('aria-hidden', 'true');
+            }
+        });
+
+        /* Close on ESC */
+        window.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' || e.key === 'Esc') {
+                document.querySelectorAll('.modal.show').forEach(modal => {
+                    modal.classList.remove('show');
+                    modal.setAttribute('aria-hidden', 'true');
+                });
+            }
+        });
+
+        /* Make project cards keyboard accessible (Enter/Space) */
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    // find which modal to open by matching the heading or text:
+                    // since these have onclick attributes already, call that function
+                    const onclick = card.getAttribute('onclick');
+                    if (onclick) {
+                        try { eval(onclick); } catch (err) { /* no-op */ }
+                    }
+                }
+            });
+        });
+
+        /* Ensure close buttons also remove 'show' (redundant but robust) */
+        document.querySelectorAll('.modal .close').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const modal = btn.closest('.modal');
+                if (modal) {
+                    modal.classList.remove('show');
+                    modal.setAttribute('aria-hidden', 'true');
+                }
+            });
+        });
+
     </script>
 </body>
 </html>
