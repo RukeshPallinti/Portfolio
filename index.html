@@ -159,6 +159,15 @@
         box-shadow: 4px 4px 10px rgba(0,0,0,0.3);
     }
 
+    /* Hide floating navigation keys on mobile */
+     @media (max-width: 768px) {
+     .nav-keys-top,
+     .nav-keys-bottom {
+      display: none !important;
+    }
+}
+
+
     /* Responsive adjustments */
     @media(max-width:768px){
         .hero { flex-direction:column; text-align:center; }
@@ -189,7 +198,7 @@
             <p>📞 +91-9618924662 | ✉ rukesh2507@gmail.com</p>
             <p>
                 🔗 <a href="https://www.linkedin.com/in/rukesh-pallinti-717892266/" target="_blank">LinkedIn</a> |
-                <a href="https://github.com/RukeshPallinti" target="_blank">GitHub</a>
+                🔗 <a href="https://github.com/RukeshPallinti" target="_blank">GitHub</a>
             </p>
             <p>"Final-year AI and Data Science student passionate about turning data into insights through dashboards and visualizations to create real-world impact."</p>
             <a href="Rukesh_resume.pdf" download class="download-btn">📄 Download Resume</a>
@@ -230,6 +239,14 @@
             <div class="project-card" onclick="openModal('churn')" role="button" aria-pressed="false" tabindex="0">
                 <h3>Customer Churn Prediction</h3>
                 <p>Built & deployed a churn prediction model with Flask and MongoDB Atlas.</p>
+            </div>
+              <div class="project-card" onclick="openModal('analyser')" role="button" aria-pressed="false" tabindex="0">
+                <h3>AI - Resume Analyser</h3>
+                <p>Built & deployed a resume analyser (NLP Model) with Spacy and Streamlit.</p>
+            </div>
+             <div class="project-card" onclick="openModal('sentiment')" role="button" aria-pressed="false" tabindex="0">
+                <h3>Sentiment Analysis</h3>
+                <p>Built & deployed a Sentiment Analysis project using the Transformers and Streamlit.</p>
             </div>
              <div class="project-card" onclick="openModal('crypto')" role="button" aria-pressed="false" tabindex="0">
                 <h3>Cryptocurrency Dashboard</h3>
@@ -325,6 +342,31 @@
       </div>
     </div>
 
+     <div id="sentiment" class="modal" aria-hidden="true">
+      <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="sentimentTitle">
+        <button class="close" aria-label="Close" title="Close" onclick="closeModal('churn')">✕</button>
+        <h3 id="SentimentTitle">Sentiment Analysis</h3>
+        <p><strong>Description:</strong> Built a sentiment analysis system using the Transformers library
+            with a DistilBERT model to classify text as positive or negative.
+            Integrated the model into a Streamlit web app for fast, real-time sentiment predictions .</p>
+        <p><strong>Outcome:</strong> Deployed ML model with interactive UI for predictions.</p>
+        <p>🔗 <a href="https://sentiment-analysis-u3uknbxmmqsx2d97ujv625.streamlit.app/" target="_blank" rel="noopener">Live Demo</a> |
+           <a href="https://github.com/RukeshPallinti/Sentiment-Analysis" target="_blank" rel="noopener">GitHub Repo</a></p>
+      </div>
+    </div>
+
+     <div id="analyser" class="modal" aria-hidden="true">
+      <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="churnTitle">
+        <button class="close" aria-label="Close" title="Close" onclick="closeModal('churn')">✕</button>
+        <h3 id="AnalyserTitle">AI-Resume Analyser</h3>
+        <p><strong>Description:</strong> Built a Resume Analyzer built using spaCy that extracts key details like name, skills, education, and experience.
+            It automates resume parsing and converts unstructured text into structured, readable information. .</p>
+        <p><strong>Outcome:</strong> Deployed ML model with interactive UI for predictions.</p>
+        <p>🔗 <a href="https://ai-resumeanalyzer-kkq9n6pwj7yd2hdhxnnunf.streamlit.app/" target="_blank" rel="noopener">Live Demo</a> |
+           <a href="https://github.com/RukeshPallinti/AI-ResumeAnalyzer" target="_blank" rel="noopener">GitHub Repo</a></p>
+      </div>
+    </div>
+
     <div id="churn" class="modal" aria-hidden="true">
       <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="churnTitle">
         <button class="close" aria-label="Close" title="Close" onclick="closeModal('churn')">✕</button>
@@ -342,13 +384,13 @@
         <h3 id="capture tag">Image Hashtag Generator</h3>
         <p><strong>Description:</strong> Generates relevant hashtags from uploaded images using TensorFlow + Flask.</p>
         <p><strong>Outcome:</strong> Deployed Tensor model with Twitter like  UI for recommendations.</p>
-        <p>🔗 <a href="https://web-production-d8d11.up.railway.app/" target="_blank" rel="noopener">Live Demo</a> |
+        <!-- <p>🔗 <a href="https://web-production-d8d11.up.railway.app/" target="_blank" rel="noopener">Live Demo</a> | -->
            <a href="https://github.com/RukeshPallinti/Capture-Tag" target="_blank" rel="noopener">GitHub Repo</a></p>
-          <p>Note: Free-tier server may take a few seconds to process images.</p>
+          <!-- <p>Note: Free-tier server may take a few seconds to process images.</p>
           <!-- Screenshot Gallery -->
     <div class="screenshot-gallery">
       <img src="app.png"><h3>The screenshot of the model!</h3>
-    </div>
+    </div> -->
       </div>
     </div>
 
